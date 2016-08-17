@@ -8,5 +8,5 @@ java -Xmx8g -Xss1m -cp :bin/:dist/*:lib/* \
 	-a data/ememergedspellingpairs.tab \
 	-s data/standardspellings.txt \
 	-w data/spellingsbywordclass.txt \
-	-o $1 \
-	"${@:2}"
+	-o ../eebo-out/ \
+	../eebo-raw/*.tag

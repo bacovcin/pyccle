@@ -4,32 +4,31 @@
 # Extract text without POS tags
 echo "Striping POS tags from PYCCLE texts"
 mkdir eebo-raw
-for file in ./eebo-texts/*.tag; do
-	cut -f1 $file > ./eebo-raw/$file
+for file in $(ls eebo-texts); do
+	cut -f1 ./eebo-texts/$file > ./eebo-raw/$file
 done
 mkdir ecco-raw
-for file in ./eebo-texts/*.tag; do
-	cut -f1 $file > ./ecco-raw/$file
+for file in $(ls ecco-texts); do
+	cut -f1 ./ecco-texts/$file > ./ecco-raw/$file
 done
 
 # Run MorphAdorner
 echo "Running MorphAdorner"
-cp ./lemmatisation-scripts/adornplainemetext.sh ./morphadorner-2.0.1/
 mkdir eebo-out
-bash ./morphadorner-2.0.1/adornplainemetext.sh ./eebo-out ./eebo-raw/*.tag
-
-cp ./lemmatisation-scripts/adornplaineccotext.sh ./morphadorner-2.0.1/
 mkdir ecco-out
-bash ./morphadorner-2.0.1/adornplaineccotext.sh ./ecco-out ./ecco-raw/*.tag
+cd morphadorner-2.0.1
+source ../lemmatisation-scripts/adornplainemetext.sh
+source ../lemmatisation-scripts/adornplaineccotext.sh 
+cd ../
 
 # Recombining MorphAdorner and PYCCLE
 echo "Recombining MorphAdorner and PYCCLE"
 mkdir eebo-final
 mkdir ecco-final
-python ./emmatisation-scripts/recombine.py
+python ./lemmatisation-scripts/recombine.py
 
 # Clean up
-if [$1 == 'clean']; then
+if [ $1 == "clean" ]; then
 	echo "Removing intermediate files"
 	rm -r eebo-raw
 	rm -r ecco-raw
