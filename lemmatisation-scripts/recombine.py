@@ -9,8 +9,8 @@ def recombine(corpus):
     # chunk
 
     # Start by getting a list of original PYCCLE texts and lemmatised output
-    texts = os.listdir('../' + corpus + '-texts')
-    lemmatised_texts = os.listdir('../' + corpus + '-out')
+    texts = os.listdir('./' + corpus + '-texts')
+    lemmatised_texts = os.listdir('./' + corpus + '-out')
     completenum = 0  # Track number of texts recombined
     fullnum = len(texts)  # Count complete number of texts
 
@@ -23,9 +23,9 @@ def recombine(corpus):
         # Make sure file exists in both folders
         if filename in texts:
             # Load files (including output file)
-            lemma_file = open('../' + corpus + '-out/'+filename)
-            orig_file = open('../' + corpus + '-texts/'+filename)
-            new_file = open('../' + corpus + '-final/'+filename, 'w')
+            lemma_file = open('./' + corpus + '-out/'+filename)
+            orig_file = open('./' + corpus + '-texts/'+filename)
+            new_file = open('./' + corpus + '-final/'+filename, 'w')
 
             # Associate every original character with MorphAdorner chunk
             lemma_chars = ''
@@ -63,6 +63,9 @@ def recombine(corpus):
                     orig_pos = '+'.join([origs[x][1] for x in cur_origs])
                     output = cur_word + '\t' + l[3] + '\t' + l[4] + '\t' + l[2] + '\t' + orig_pos + '\n'
                     new_file.write(output)
+                    # Check if new token has been reached, if so add empty line
+                    if l[-1] == '1':
+                        new_file.write('\n')
                     cur_origs = []
                     cur_lemma = lemma_states[i]
                     cur_word = ''
