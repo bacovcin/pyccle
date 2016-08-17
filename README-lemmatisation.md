@@ -6,7 +6,7 @@ the [MorphAdorner](http://morphadorner.northwestern.edu) lemmatiser. As with
 the original PYCCLE, none of the output is hand corrected, so the usual
 problems with machine annotation exist.
 
-
+MorphAdorn's LICENSE can be found (here)[http://morphadorner.northwestern.edu/licenses/]
 
 # Lemmatisation - Process
 
