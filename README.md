@@ -17,9 +17,8 @@ the original PYCCLE has been obtained.
 
 1. Create symbolic links to the PYCCLE files in the main directory of the
 repository: ln -s 
-2. Download and unzip the latest version of [MorphAdorner](http://morphadorner.northwestern.edu/download/) into the main
-directory of the repository.
-2. Run the make.sh script in the lemmatisation folder.
+2. Unzip MorphAdorner: unzip morphadorner-2.0.1.zip
+2. Run the make.sh script in the lemmatisation-scripts folder.
 3. The resulting files will be output into the eebo-final and ecco-final
 directories
 
